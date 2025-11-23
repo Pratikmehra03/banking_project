@@ -16,5 +16,5 @@ Then run the executable: ./main
 - src → contains all .c files  
 - include → contains header file  
 - docs → for documentation  
-- assets → other files if needed  
+- assets → other files  
 - sample_input.txt → example input
