@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include "bank.h"
 
-/* Simple menu-driven driver for the banking module.
-   Keeps a single account in memory. */
-
-int main(void) {
+/* menu driven program */
+int main() {
     struct Account acc;
     int created = 0;
     int choice;
@@ -18,14 +16,7 @@ int main(void) {
         printf("4. Show Balance\n");
         printf("5. Exit\n");
         printf("Enter choice: ");
-
-        if (scanf("%d", &choice) != 1) {
-            /* clear bad input */
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF) { }
-            printf("Invalid input. Please enter a number.\n");
-            continue;
-        }
+        scanf("%d", &choice);
 
         switch (choice) {
             case 1:
@@ -39,11 +30,7 @@ int main(void) {
                     break;
                 }
                 printf("Enter amount to deposit: ");
-                if (scanf("%f", &amount) != 1) {
-                    int c; while ((c = getchar()) != '\n' && c != EOF) { }
-                    printf("Invalid amount.\n");
-                    break;
-                }
+                scanf("%f", &amount);
                 deposit(&acc, amount);
                 break;
 
@@ -53,11 +40,7 @@ int main(void) {
                     break;
                 }
                 printf("Enter amount to withdraw: ");
-                if (scanf("%f", &amount) != 1) {
-                    int c; while ((c = getchar()) != '\n' && c != EOF) { }
-                    printf("Invalid amount.\n");
-                    break;
-                }
+                scanf("%f", &amount);
                 withdraw(&acc, amount);
                 break;
 
@@ -74,7 +57,7 @@ int main(void) {
                 return 0;
 
             default:
-                printf("Invalid choice. Try again.\n");
+                printf("Invalid choice.\n");
         }
     }
 
