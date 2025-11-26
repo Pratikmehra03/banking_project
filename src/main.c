@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include "bank.h"
 
-/* menu driven program */
 int main() {
-    struct Account acc;
-    int created = 0;
-    int choice;
-    float amount;
+    Account accounts[100];
+
+    /* load saved accounts from file on start */
+    int count = loadAccounts(accounts);
+
+    int choice, acc;
+    float amt;
+    char name[50];
 
     while (1) {
         printf("\n--- Banking System ---\n");
@@ -18,48 +21,62 @@ int main() {
         printf("Enter choice: ");
         scanf("%d", &choice);
 
-        switch (choice) {
-            case 1:
-                createAccount(&acc);
-                created = 1;
-                break;
+        if (choice == 1) {
+            /* get name and create */
+            printf("Enter your name: ");
+            scanf("%s", name);
+            createAccount(accounts, &count, name);
 
-            case 2:
-                if (!created) {
-                    printf("Please create an account first.\n");
-                    break;
-                }
-                printf("Enter amount to deposit: ");
-                scanf("%f", &amount);
-                deposit(&acc, amount);
-                break;
+            /* save after creating new account */
+            saveAccounts(accounts, count);
+            printf("Account created and saved.\n");
+        }
 
-            case 3:
-                if (!created) {
-                    printf("Please create an account first.\n");
-                    break;
-                }
-                printf("Enter amount to withdraw: ");
-                scanf("%f", &amount);
-                withdraw(&acc, amount);
-                break;
+        else if (choice == 2) {
+            /* deposit flow: ask acc and amount */
+            printf("Account Number: ");
+            scanf("%d", &acc);
+            printf("Amount: ");
+            scanf("%f", &amt);
+            deposit(accounts, count, acc, amt);
 
-            case 4:
-                if (!created) {
-                    printf("Create an account first.\n");
-                    break;
-                }
-                showBalance(acc);
-                break;
+            /* save after deposit */
+            saveAccounts(accounts, count);
+            printf("Deposit done and saved.\n");
+        }
 
-            case 5:
-                printf("Exiting...\n");
-                return 0;
+        else if (choice == 3) {
+            /* withdraw flow: check account and balance */
+            printf("Account Number: ");
+            scanf("%d", &acc);
+            printf("Amount: ");
+            scanf("%f", &amt);
+            withdraw(accounts, count, acc, amt);
 
-            default:
-                printf("Invalid choice.\n");
+            /* save after withdraw */
+            saveAccounts(accounts, count);
+            printf("If successful, changes saved.\n");
+        }
+
+        else if (choice == 4) {
+            /* display account details */
+            printf("Account Number: ");
+            scanf("%d", &acc);
+            showBalance(accounts, count, acc);
+        }
+
+        else if (choice == 5) {
+            /* final save before exit */
+            saveAccounts(accounts, count);
+            printf("Data saved. Exiting...\n");
+            break;
+        }
+
+        else {
+            printf("Invalid choice.\n");
         }
     }
 
     return 0;
 }
+
