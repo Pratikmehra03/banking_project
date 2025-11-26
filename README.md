@@ -8,13 +8,26 @@ It has options to create an account, deposit money, withdraw money and show the 
 - Deposit Amount  
 - Withdraw Amount  
 - Check Balance  
-
-## How to Run
-First compile the code using gcc: gcc -std=c11 -Wall -Wextra -Wpedantic -Iinclude src/main.c src/bank.c -o main
-Then run the executable: ./main
+- Multiple Accounts Support
+- File Storage
 ## Folder Structure
 - src → contains all .c files  
 - include → contains header file  
-- docs → for documentation  
-- assets → other files  
+- docs → contains project report
+- assets → empty  
 - sample_input.txt → example input
+## Compilation
+Run the following command:
+gcc -Iinclude src/main.c src/bank.c -o banking
+## Running the program
+./banking
+## File Handling
+All accounts are stored in:
+accounts.txt
+
+Each line contains:
+AccountNumber Name Balance
+## Author
+Pratik Mehra  
+SAP ID: 590027706
+
