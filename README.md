@@ -21,6 +21,8 @@ Run the following command:
 gcc -Iinclude src/main.c src/bank.c -o banking
 ## Running the program
 ./banking
+To run the project using the sample input, use:
+./banking < sample_input.txt
 ## File Handling
 All accounts are stored in:
 accounts.txt
