@@ -1,15 +1,20 @@
 #ifndef BANK_H
 #define BANK_H
 
-struct Account {
-    int id;
+typedef struct {
+    int accountNumber;
     char name[50];
     float balance;
-};
+} Account;
 
-void createAccount(struct Account *acc);
-void deposit(struct Account *acc, float amount);
-void withdraw(struct Account *acc, float amount);
-void showBalance(struct Account acc);
+int findAccount(Account accounts[], int count, int accNo);
+void createAccount(Account accounts[], int *count, char name[]);
+void deposit(Account accounts[], int count, int accNo, float amount);
+void withdraw(Account accounts[], int count, int accNo, float amount);
+void showBalance(Account accounts[], int count, int accNo);
+
+/* NEW – file handling */
+void saveAccounts(Account accounts[], int count);
+int loadAccounts(Account accounts[]);
 
 #endif
