@@ -18,11 +18,11 @@ It has options to create an account, deposit money, withdraw money and show the 
 - sample_input.txt → example input
 ## Compilation
 Run the following command:
-gcc -Iinclude src/main.c src/bank.c -o banking
+gcc -Iinclude src/main.c src/bank.c -o main
 ## Running the program
-./banking
+./main
 To run the project using the sample input, use:
-./banking < sample_input.txt
+./main < sample_input.txt
 ## File Handling
 All accounts are stored in:
 accounts.txt
